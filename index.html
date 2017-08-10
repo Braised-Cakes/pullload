@@ -1,0 +1,47 @@
+<!-- <!DOCTYPE html> -->
+<html style="font-size: 100px;">
+
+<head>
+	<meta charset="utf-8">
+	<title>toast</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport" />
+	<link href="http://mjs.sinaimg.cn/wap/module/new_comment/201608181047/cmnt/css/cmnt.min.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="f_hot_cmnt" style="display: block;">
+		<div class="cmnt_list" id="j_hotlist">
+
+		</div>
+		<div class="cmnt_mores" id="j_pullLoader" data-sudaclick="pullLoader" data-page="3">
+			<span class="loading_btn"><i class="icon_loading"></i>加载中</span>
+		</div>
+	</div>
+	<script src="http://mjs.sinaimg.cn/wap/module/base/js/zepto.min.js"></script>
+	<script src="./index.js"></script>
+</body>
+<script>
+	new Pullload({
+		onScrollEnd: function(pullload) {
+			console.log('启动');
+			$.ajax({
+				url: 'http://cmnt.sina.cn/aj/v2/index?product=comos&group=0&index=fycnpiu9439571&page=1',
+				type: 'get',
+				async: false,
+				dataType: 'jsonp',
+				jsonp: '_callback',
+				success: function(rs) {
+					var str = '';
+					rs.data.data.forEach(function(item, index) {
+						str +=
+							'<div class="cmnt_item" data-mid="58D2613A-DF4290BE-1681D5AF7-8F4-933" data-wbuser="1" data-wbname="海岸渔夫18596"><img src="http://tvax4.sinaimg.cn/default/images/default_avatar_male_50.gif" alt="" class="cmnt_pic"><div class="cmnt_info"><span class="cmnt_name cmnt_nick">海岸渔夫18596</span><span class="cmnt_location"><i class="icon_location2"></i>江苏徐州</span><span class="cmnt_time">4天前</span></div><div class="cmnt_text">归还遗体和抵制萨德是两码事，必须让韩国付出代价！！</div><div class="cmnt_op"><a href="javascript:void(0);" class="cmnt_report j_report">举报</a><div class="cmnt_num"><a href="javascript:void(0);" class="cmnt_good j_favor_single" data-agree="53"><i class="icon_zan"></i><span class="cmnt_good_num">53</span></a><a href="javascript:void(0);" class="reply j_cmnt_single">回复</a></div></div></div>';
+					})
+					$('#j_hotlist').append(str);
+					pullload.tick();
+				}
+			})
+		}
+	});
+</script>
+
+</html>
