@@ -22,11 +22,11 @@
 				if (s.params.container) {
 					sTop = document.querySelector(s.params.container).scrollTop;
 					dHeight = document.querySelector(s.params.container).scrollHeight;
-					cHeight = document.querySelector(s.params.container).clientHeight;
+					cHeight = window.screen.height;
 				} else {
 					sTop = document.body.scrollTop || document.documentElement.scrollTop;
 					dHeight = document.body.scrollHeight;
-					cHeight = document.documentElement.clientHeight;
+					cHeight = window.screen.height;
 				}
 				if (sTop + cHeight >= dHeight - s.params.distance) {
 					s.needPush()
@@ -46,9 +46,6 @@
 		}
 		s.start = function() {
 			s.tick();
-			if (window.screen.height >= document.body.offsetHeight || document.documentElement.clientHeight) {
-				s.needPush();
-			}
 			s.params.main.addEventListener('scroll', judgeLoadMore, false);
 		}
 		s.emit = function(eventName) {
