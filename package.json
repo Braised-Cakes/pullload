@@ -1,7 +1,7 @@
 {
     "name": "pullload",
     "description": "上拉加载更多",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "keywords": [
         "pull"
     ],
