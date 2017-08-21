@@ -4,6 +4,14 @@
 
 组件只判断是否加载更多， 业务逻辑由使用者编写
 
+如果body高度小于可视区高度时，会重复调用pullload，使用者不需要关心回调数据过少的情况
+
+## demo
+
+[点击demo查看](https://braisedcakes666.github.io/pullload/index.html)
+
+![demo地址](./qrcode.png)
+
 ## Install
 
 ```
@@ -13,7 +21,13 @@ npm install pullload --save-dev
 ## Usage
 
 ```javascript
-new Pullload({
+//支持amd，cmd，umd等方式调用
+
+import { pullload } from 'pullload'
+const { pullload } = require('pullload')
+
+new pullload({
+
     //onScrollEnd 为 加载更多时的回调
     onScrollEnd : function(pullload){
     }
@@ -38,8 +52,7 @@ tick   | 业务逻辑执行完毕
 
 ```javascript
 var page = 1;
-new Pullload({
-    container : '#main',
+new pullload({
     onScrollEnd : function(pullload){
         $.ajax({
             url: 'http://cmnt.sina.cn/aj/v2/index?page=' + page++,
